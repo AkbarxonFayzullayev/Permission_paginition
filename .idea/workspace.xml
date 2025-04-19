@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5065a335-1fc5-4351-aec4-af111cca5369" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/TestPythonProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/make_token.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/models/auth_users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/models/model_course.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/models/model_group.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/models/model_student.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/models/model_teacher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configapp/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/configapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

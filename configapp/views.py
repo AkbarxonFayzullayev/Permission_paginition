@@ -2,6 +2,7 @@ from django.db import transaction
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -135,10 +136,13 @@ class LoginApi(APIView):
 
 class TeacherAPI(APIView):
     permission_classes = [IsAdminUser, ]
-    def get(self,request):
-        teacher = Teacher.objects.all()
-        serializers = TeacherSerializers(teacher,many=True)
-        return Response(data=serializers.data)
+    def get(self, request):
+        teachers = Teacher.objects.all()
+        paginator = PageNumberPagination()
+        paginator.page_size = 10  # sahifadagi elementlar soni
+        result_page = paginator.paginate_queryset(teachers, request)
+        serializer = TeacherSerializers(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
     def post(self,request):
         serializers = TeacherSerializers(data=request.data)
         if serializers.is_valid():
@@ -176,10 +180,13 @@ class TeacherAPI(APIView):
 
 class StudentAPI(APIView):
     permission_classes = [IsAdminUser, ]
-    def get(self,request):
-        student = Student.objects.all()
-        serializers = TeacherSerializers(student,many=True)
-        return Response(data=serializers.data)
+    def get(self, request):
+        students = Student.objects.all()
+        paginator = PageNumberPagination()
+        paginator.page_size = 10
+        result_page = paginator.paginate_queryset(students, request)
+        serializer = StudentSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
     def post(self,request):
         serializers = TeacherSerializers(data=request.data)
         if serializers.is_valid():
