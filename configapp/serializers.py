@@ -1,8 +1,7 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
 
-from configapp.models import User
-from configapp.models.model_course import Course
+from configapp.models import User, TableType, Table, GroupStudent, Course
 from configapp.models.model_student import Student
 from configapp.models.model_teacher import Teacher, Departments
 
@@ -159,3 +158,47 @@ class StudentPostSerializer(serializers.ModelSerializer):
         student.departments.set(departments_db)
         student.course.set(course_db)
         return student
+class TableTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TableType
+        fields = '__all__'
+class TableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Table
+        fields = '__all__'
+
+class GroupStudentSerializer(serializers.ModelSerializer):
+    # For foreign key relationships - display full object
+    course = serializers.StringRelatedField()
+    table = TableSerializer(read_only=True)
+
+    # For many-to-many relationship with Teacher
+    teacher = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = GroupStudent
+        fields = '__all__'
+        extra_kwargs = {
+            'start_date': {'format': '%Y-%m-%d'},
+            'end_date': {'format': '%Y-%m-%d'},
+        }
+
+
+# If you need nested serializers for related fields:
+class GroupStudentDetailSerializer(serializers.ModelSerializer):
+    course = CourseSerializer(read_only=True)  # Assuming you have CourseSerializer
+    teacher = TeacherSerializers(many=True, read_only=True)  # Assuming you have TeacherSerializer
+    table = TableSerializer(read_only=True)
+
+    class Meta:
+        model = GroupStudent
+        fields = '__all__'
+
+
+
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroupStudent
+        fields = ['title', 'course', 'teacher', 'table', 'start_date', 'finish_date']
