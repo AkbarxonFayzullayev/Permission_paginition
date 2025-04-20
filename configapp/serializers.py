@@ -168,11 +168,9 @@ class TableSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class GroupStudentSerializer(serializers.ModelSerializer):
-    # For foreign key relationships - display full object
     course = serializers.StringRelatedField()
     table = TableSerializer(read_only=True)
 
-    # For many-to-many relationship with Teacher
     teacher = serializers.StringRelatedField(many=True)
 
     class Meta:
@@ -186,8 +184,8 @@ class GroupStudentSerializer(serializers.ModelSerializer):
 
 # If you need nested serializers for related fields:
 class GroupStudentDetailSerializer(serializers.ModelSerializer):
-    course = CourseSerializer(read_only=True)  # Assuming you have CourseSerializer
-    teacher = TeacherSerializers(many=True, read_only=True)  # Assuming you have TeacherSerializer
+    course = CourseSerializer(read_only=True)
+    teacher = TeacherSerializers(many=True, read_only=True)
     table = TableSerializer(read_only=True)
 
     class Meta:
